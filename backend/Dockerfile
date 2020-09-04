@@ -1,6 +1,8 @@
 FROM node:12.18.2
-WORKDIR /app
+WORKDIR /backend
+
+COPY package.json /home/app/
 
 COPY . .
 
-CMD yarn && yarn dev:server
+CMD yarn && yarn typeorm migration:run && yarn dev:server
